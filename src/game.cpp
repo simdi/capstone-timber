@@ -86,6 +86,12 @@ void Game::move() {
       float timeElapsed = dt.asSeconds() + (index / 10000);
       bee.Move(index, timeElapsed);
     }
+    // Move Cloud
+    for(Cloud &cloud : m_clouds) {
+      float index = static_cast<float>(&cloud - &m_clouds[0]);
+      // float timeElapsed = dt.asSeconds() + (index / 10000);
+      cloud.Move(index, dt.asSeconds());
+    }
   }
 }
 
@@ -93,13 +99,13 @@ void Game::draw(sf::RenderWindow &window) {
   // Draw the sprite
   window.draw(*m_spriteBackground);
 
-  // Draw all tree sprites
-  for(const Tree &tree : m_trees) {
-    window.draw(*tree.getSprite());
-  }
   // Draw all cloud sprites
   for(const Cloud &cloud : m_clouds) {
     window.draw(*cloud.getSprite());
+  }
+  // Draw all tree sprites
+  for(const Tree &tree : m_trees) {
+    window.draw(*tree.getSprite());
   }
   // Draw all bee sprites
   for(const Bee &bee : m_bees) {
