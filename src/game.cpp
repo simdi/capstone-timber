@@ -1,6 +1,8 @@
 #include "./include/game.h"
 
-Game::Game() : m_player({580.0f, 720.0f}, "graphics/player.png") {
+Game::Game() :
+  m_player({580.0f, 720.0f}, "graphics/player.png"),
+  m_rip({600.0f, 860.0f}, "graphics/rip.png") {
   std::cout << "Game initialised" << std::endl;
   m_textureBackground->loadFromFile("graphics/background.png");
   m_spriteBackground->setTexture(*m_textureBackground);
@@ -108,6 +110,8 @@ void Game::draw(sf::RenderWindow &window) {
 
   // Draw player sprite
   window.draw(*m_player.getSprite());
+  // Draw rip sprite
+  window.draw(*m_rip.getSprite());
 
   // Draw all bee sprites
   for(const Bee &bee : m_bees) {

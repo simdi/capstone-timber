@@ -8,6 +8,7 @@
 #include "./include/tree.h"
 #include "./include/bee.h"
 #include "./include/player.h"
+#include "./include/rip.h"
 
 class Game {
 private:
@@ -17,6 +18,7 @@ private:
   std::vector<Bee> m_bees;
   std::vector<Tree> m_trees;
   Player m_player;
+  Rip m_rip;
   sf::Event m_event;
   sf::Clock m_clock;
   // Track weather the game is running
