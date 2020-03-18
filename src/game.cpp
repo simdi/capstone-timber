@@ -3,7 +3,8 @@
 Game::Game() :
   m_player({580.0f, 720.0f}, "graphics/player.png"),
   m_rip({600.0f, 860.0f}, "graphics/rip.png"),
-  m_axe({700.0f, 830.0f}, "graphics/axe.png") {
+  m_axe({700.0f, 830.0f}, "graphics/axe.png"),
+  m_log({810.0f, 720.0f}, "graphics/log.png") {
   std::cout << "Game initialised" << std::endl;
   m_textureBackground->loadFromFile("graphics/background.png");
   m_spriteBackground->setTexture(*m_textureBackground);
@@ -115,6 +116,8 @@ void Game::draw(sf::RenderWindow &window) {
   window.draw(*m_rip.getSprite());
   // Draw axe sprite
   window.draw(*m_axe.getSprite());
+  // Draw log sprite
+  window.draw(*m_log.getSprite());
 
   // Draw all bee sprites
   for(const Bee &bee : m_bees) {

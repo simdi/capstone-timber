@@ -10,6 +10,7 @@
 #include "./include/player.h"
 #include "./include/rip.h"
 #include "./include/axe.h"
+#include "./include/log.h"
 
 class Game {
 private:
@@ -21,6 +22,7 @@ private:
   Player m_player;
   Rip m_rip;
   Axe m_axe;
+  Log m_log;
   sf::Event m_event;
   sf::Clock m_clock;
   // Track weather the game is running
