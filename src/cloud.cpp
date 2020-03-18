@@ -6,6 +6,6 @@ Cloud::Cloud(sf::Vector2f cords, std::string texturePath) {
   m_sprite->setPosition(cords.x, cords.y);
 }
 
-std::shared_ptr<sf::Sprite> Cloud::getSprite() const {
-  return m_sprite;
-};
+void Cloud::Move(float index, float dtSeconds) {
+  std::cout << index << dtSeconds << std::endl;
+}

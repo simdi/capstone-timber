@@ -6,6 +6,6 @@ Tree::Tree(sf::Vector2f cords, std::string texturePath) {
   m_sprite->setPosition(cords.x, cords.y);
 }
 
-std::shared_ptr<sf::Sprite> Tree::getSprite() const {
-  return m_sprite;
-};
+void Tree::Move(float index, float dtSeconds) {
+  std::cout << index << dtSeconds << std::endl;
+}

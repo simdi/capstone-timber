@@ -15,10 +15,22 @@ private:
   std::vector<Cloud> m_clouds;
   std::vector<Bee> m_bees;
   std::vector<Tree> m_trees;
+  sf::Event m_event;
+  sf::Clock m_clock;
+  // Track weather the game is running
+  bool m_paused{true};
+  // Control player input
+  bool m_acceptInput{false};
+  void init();
+  void move();
+  void draw(sf::RenderWindow &window);
+  static constexpr std::size_t NO_OF_CLOUDS{3};
+  static constexpr std::size_t NO_OF_TREES{3};
+  static constexpr std::size_t NO_OF_BEES{3};
 
 public:
   Game();
-  void Run(sf::RenderWindow &window, Controller &controller, std::size_t clouds, std::size_t trees, std::size_t bees);
+  void Run(sf::RenderWindow &window, Controller &controller);
 };
 
 #endif

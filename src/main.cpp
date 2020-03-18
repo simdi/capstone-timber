@@ -13,15 +13,11 @@ int main() {
 	window.create(vm, "Timber!!!");
 	platform.setIcon(window.getSystemHandle());
 
-  constexpr std::size_t noOfClouds{3};
-  constexpr std::size_t noOfTrees{3};
-  constexpr std::size_t noOfBees{3};
-
   // Initialise Controller
   Controller controller;
   // Initialise game.
   Game game;
-  game.Run(window, controller, noOfClouds, noOfTrees, noOfBees);
+  game.Run(window, controller);
 
 	return 0;
 }
