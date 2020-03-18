@@ -15,12 +15,13 @@ int main() {
 
   constexpr std::size_t noOfClouds{3};
   constexpr std::size_t noOfTrees{3};
+  constexpr std::size_t noOfBees{3};
 
   // Initialise Controller
   Controller controller;
   // Initialise game.
   Game game;
-  game.Run(window, controller, noOfClouds, noOfTrees);
+  game.Run(window, controller, noOfClouds, noOfTrees, noOfBees);
 
 	return 0;
 }
