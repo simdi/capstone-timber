@@ -1,8 +1,6 @@
 #include "./include/game.h"
-#include "./include/tree.h"
-#include "./include/bee.h"
 
-Game::Game() {
+Game::Game() : m_player({580.0f, 720.0f}, "graphics/player.png") {
   std::cout << "Game initialised" << std::endl;
   m_textureBackground->loadFromFile("graphics/background.png");
   m_spriteBackground->setTexture(*m_textureBackground);
@@ -14,7 +12,7 @@ void Game::init() {
   for(std::size_t i = 0; i < NO_OF_CLOUDS; i++) {
     // Create cloud with default x and y coordinates.
     Cloud cloud({0.0f, static_cast<float>((i)*250)}, "graphics/cloud.png");
-    m_clouds.emplace_back(cloud);
+    m_clouds.emplace_back(std::move(cloud));
   }
   // Init trees
   for(std::size_t i = 0; i < NO_OF_TREES; i++) {
@@ -71,7 +69,7 @@ void Game::move() {
   if (!m_paused) {
     // Measure the time that has elapsed since the clock started
     sf::Time dt = m_clock.restart();
-    // Substract from the amount of time remaining
+    // // Substract from the amount of time remaining
     // timeRemaining -= dt.asSeconds();
     // // Set up the time bar
     // timeBar.setSize(sf::Vector2f(timeBarWidthPerSecond * timeRemaining, timeBarHeight));
@@ -80,7 +78,7 @@ void Game::move() {
     //   // Pause the game.
     //   m_paused = true;
     // }
-    // Move bees
+    // // Move bees
     for(Bee &bee : m_bees) {
       float index = static_cast<float>(&bee - &m_bees[0]);
       float timeElapsed = dt.asSeconds() + (index / 10000);
@@ -107,8 +105,13 @@ void Game::draw(sf::RenderWindow &window) {
   for(const Tree &tree : m_trees) {
     window.draw(*tree.getSprite());
   }
+
+  // Draw player sprite
+  window.draw(*m_player.getSprite());
+
   // Draw all bee sprites
   for(const Bee &bee : m_bees) {
     window.draw(*bee.getSprite());
   }
+
 }
