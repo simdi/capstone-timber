@@ -8,7 +8,9 @@ int main() {
   sf::RenderWindow window;
 	// in Windows at least, this must be called before creating the window
   float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
-  sf::VideoMode vm(1920.0f * screenScalingFactor, 1080.0f * screenScalingFactor);
+  float screenX{1920.0f * screenScalingFactor};
+  float screenY{1080.0f * screenScalingFactor};
+  sf::VideoMode vm(screenX, screenY);
 
 	window.create(vm, "Timber!!!");
 	platform.setIcon(window.getSystemHandle());
@@ -16,7 +18,7 @@ int main() {
   // Initialise Controller
   Controller controller;
   // Initialise game.
-  Game game;
+  Game game(screenX, screenY);
   game.Run(window, controller);
 
 	return 0;
