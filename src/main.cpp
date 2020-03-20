@@ -15,11 +15,9 @@ int main() {
 	window.create(vm, "Timber!!!");
 	platform.setIcon(window.getSystemHandle());
 
-  // Initialise Controller
-  Controller controller;
   // Initialise game.
   Game game(screenX, screenY);
-  game.Run(window, controller);
+  game.Run(window);
 
 	return 0;
 }

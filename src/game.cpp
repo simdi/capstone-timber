@@ -15,6 +15,31 @@ Game::Game(float x, float y) : m_screenX(x), m_screenY(y),
   m_timeBar.setSize(sf::Vector2f(TIMEBAR_START_WIDTH, TIMEBAR_HEIGHT));
   m_timeBar.setFillColor(sf::Color::Red);
   m_timeBar.setPosition((m_screenX/2) - TIMEBAR_START_WIDTH/2, 980);
+
+  // Choose a font
+  m_font.loadFromFile("fonts/KOMIKAP_.ttf");
+  // Set font to the message
+  m_messageText.setFont(m_font);
+  m_scoreText.setFont(m_font);
+  m_scoreText.setString("Score = 0");
+  // Set the size
+  m_messageText.setCharacterSize(55);
+  m_scoreText.setCharacterSize(75);
+  // Set color of the texts
+  m_messageText.setFillColor(m_textColor);
+  m_scoreText.setFillColor(m_textColor);
+  // Assign the actual text
+  setMessageText("Press Enter to start");
+  // Position the texts
+  m_scoreText.setPosition(20, 20);
+
+  // Sounds
+  m_ootBuffer.loadFromFile("sound/out_of_time.wav");
+  m_deathBuffer.loadFromFile("sound/death.wav");
+  m_chopBuffer.loadFromFile("sound/chop.wav");
+  m_outOfTime.setBuffer(m_ootBuffer);
+  m_death.setBuffer(m_deathBuffer);
+  m_chop.setBuffer(m_chopBuffer);
 }
 
 void Game::init() {
@@ -47,7 +72,7 @@ void Game::init() {
   }
 }
 
-void Game::Run(sf::RenderWindow &window, Controller &controller) {
+void Game::Run(sf::RenderWindow &window) {
   // Initialize all sprites and textures.
   init();
 
@@ -57,8 +82,7 @@ void Game::Run(sf::RenderWindow &window, Controller &controller) {
     Handle user input
     *********************************************************
     */
-		controller.HandleInput(window, m_event, m_paused, m_acceptInput);
-
+    handleInput(window);
     /* 
     *********************************************************
     Update game scene
@@ -81,20 +105,110 @@ void Game::Run(sf::RenderWindow &window, Controller &controller) {
   }
 }
 
+void Game::handleInput(sf::Window &window) {
+  while (window.pollEvent(m_event)) {
+    if (m_event.type == sf::Event::Closed)
+      window.close();
+
+    if (m_event.type == sf::Event::KeyReleased && !m_paused) {
+      // Listen for key pressed again
+      m_acceptInput = true;
+
+      // Hide the axe
+      (*m_axe.getSprite()).setPosition(2000, (*m_axe.getSprite()).getPosition().y);
+    }
+  }
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+    m_paused = false;
+    // Reset the time and the score
+    m_score = 0;
+    m_timeRemaining = 5;
+
+    // Make all branches disappear
+    for (std::size_t i = 1; i < NO_OF_BRANCHES; i++) {
+      m_branchPositions[i] = side::NONE;
+    }
+    // Make sure the gravestone is hidden
+    (*m_rip.getSprite()).setPosition(675, 2000);
+    // Move player into position
+    (*m_player.getSprite()).setPosition(580, 720);
+    m_acceptInput = true;
+  }
+
+  // wrap the player control to make sure we are accepting user input
+  if (m_acceptInput) {
+    // Handle pressing the right cursor key
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+      // Make sure the player is on the right
+      m_playerSide = side::RIGHT;
+      m_score++;
+
+      // Add to the amount of time remaining
+      m_timeRemaining += (2 / m_score) * .15;
+
+      (*m_axe.getSprite()).setPosition(m_axe.PositionRight(), (*m_axe.getSprite()).getPosition().y);
+      (*m_player.getSprite()).setPosition(1200, 720);
+
+      // Update the branch
+      updateBranches(m_score);
+
+      // Set the log flying to the left
+      (*m_log.getSprite()).setPosition(810, 720);
+      m_log.SpeedX(-5000);
+      m_log.IsActive(true);
+
+      m_acceptInput = false;
+
+      // Play sound
+      m_chop.play();
+    }
+
+    // Handle pressing the left cursor key
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+      // Make sure the player is on the right
+      m_playerSide = side::LEFT;
+      m_score++;
+
+      // Add to the amount of time remaining
+      m_timeRemaining += (2 / m_score) * .15;
+
+      (*m_axe.getSprite()).setPosition(m_axe.PositionLeft(), (*m_axe.getSprite()).getPosition().y);
+      (*m_player.getSprite()).setPosition(580, 720);
+
+      // Update the branch
+      updateBranches(m_score);
+
+      // Set the log flying to the left
+      (*m_log.getSprite()).setPosition(810, 720);
+      m_log.SpeedX(5000);
+      m_log.IsActive(true);
+
+      m_acceptInput = false;
+      // Play sound
+      m_chop.play();
+    }
+  }
+}
+
 void Game::move() {
   if (!m_paused) {
     // Measure the time that has elapsed since the clock started
     sf::Time dt = m_clock.restart();
-    // // Substract from the amount of time remaining
-    // timeRemaining -= dt.asSeconds();
-    // // Set up the time bar
-    // timeBar.setSize(sf::Vector2f(timeBarWidthPerSecond * timeRemaining, timeBarHeight));
+    // Substract from the amount of time remaining
+    m_timeRemaining -= dt.asSeconds();
+    // Set up the time bar
+    m_timeBar.setSize(sf::Vector2f(m_timeBarWidthPerSecond * m_timeRemaining, TIMEBAR_HEIGHT));
 
-    // if (timeRemaining <= 0.0f) {
-    //   // Pause the game.
-    //   m_paused = true;
-    // }
-    // // Move bees
+    if (m_timeRemaining <= 0.0f) {
+      // Pause the game.
+      m_paused = true;
+      // Change the message shown to the player
+      setMessageText("Out of time!!");
+      // Play the sound for out of time.
+      m_outOfTime.play();
+    }
+
+    // Move bees
     for(Bee &bee : m_bees) {
       float index = static_cast<float>(&bee - &m_bees[0]);
       float timeElapsed = dt.asSeconds() + (index / 10000);
@@ -105,6 +219,30 @@ void Game::move() {
       float index = static_cast<float>(&cloud - &m_clouds[0]);
       // float timeElapsed = dt.asSeconds() + (index / 10000);
       cloud.Move(index, dt.asSeconds());
+    }
+
+    // Update the score text
+    std::stringstream ss;
+    ss << "Score = " << m_score;
+    m_scoreText.setString(ss.str());
+
+    // Handle a flying log
+    m_log.Move(0.0f, dt.asSeconds());
+
+    if (m_branchPositions[5] == m_playerSide) {
+      // Death
+      m_paused = true;
+      m_acceptInput = false;
+
+      // Draw the gravestone
+      (*m_rip.getSprite()).setPosition(525, 760);
+      // Hide the player
+      (*m_player.getSprite()).setPosition(2000, 660);
+      // Change the text of the message
+      setMessageText("SQUISHED!!");
+
+      // Play death sound
+      m_death.play();
     }
   }
 }
@@ -142,4 +280,40 @@ void Game::draw(sf::RenderWindow &window) {
   
   // Draw the time bar
   window.draw(m_timeBar);
+  // Draw the score text
+  window.draw(m_scoreText);
+  if(m_paused) {
+    // Draw message text.
+    window.draw(m_messageText);
+  }
+}
+
+void Game::updateBranches(int seed) {
+  // Move all branches down one place
+  for (int j = NO_OF_BRANCHES-1; j > 0; j--) {
+    m_branches[j] = m_branches[j-1];
+  }
+  // Spawn a new branch at the top of the tree
+  // LEFT, RIGHT, NONE
+  srand((int)time(0) + seed);
+  int r = (rand() % 5);
+  switch (r) {
+  case 0:
+    m_branchPositions[0] = side::LEFT;
+    break;
+  case 1:
+    m_branchPositions[0] = side::RIGHT;
+    break;
+  default:
+    m_branchPositions[0] = side::NONE;
+    break;
+  }
+}
+
+void Game::setMessageText(std::string text) {
+  m_messageText.setString(text);
+  // Center it on the screen
+  sf::FloatRect textRect = m_messageText.getLocalBounds();
+  m_messageText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+  m_messageText.setPosition(m_screenX/2.0f, m_screenY/2.0f);
 }

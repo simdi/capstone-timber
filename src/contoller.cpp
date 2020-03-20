@@ -4,7 +4,13 @@ Controller::Controller() {
   std::cout << "Controller has been initialised" << std::endl;
 }
 
-void Controller::HandleInput(sf::Window &window, sf::Event &event, bool &paused, bool &acceptInput) {
+void Controller::HandleInput(
+  sf::Window &window,
+  sf::Event &event,
+  bool &paused,
+  bool &acceptInput,
+  sf::Sprite spriteAxe
+  ) {
   while (window.pollEvent(event)) {
     if (event.type == sf::Event::Closed)
       window.close();
@@ -14,11 +20,8 @@ void Controller::HandleInput(sf::Window &window, sf::Event &event, bool &paused,
       acceptInput = true;
 
       // Hide the axe
-      // spriteAxe.setPosition(2000, spriteAxe.getPosition().y);
+      spriteAxe.setPosition(2000, spriteAxe.getPosition().y);
     }
   }
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-    paused = false;
-  }
 }

@@ -10,6 +10,10 @@ protected:
 public:
   virtual void Move(float index, float dtSeconds) = 0;
   std::shared_ptr<sf::Sprite> getSprite() const { return m_sprite; };
+  bool IsActive() const { return m_isActive; };
+  float Speed() const { return m_speed; };
+  void IsActive(bool active) { m_isActive = active; };
+  void Speed(float speed) { m_speed = speed; };
   virtual ~Entity() { /* std::cout << "Deleted" << std::endl; */ };
 };
 

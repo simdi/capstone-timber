@@ -8,7 +8,7 @@ private:
 
 public:
   Controller();
-  void HandleInput(sf::Window &window, sf::Event &event, bool &paused, bool &accpetInput);
+  void HandleInput(sf::Window &window, sf::Event &event, bool &paused, bool &accpetInput, sf::Sprite spriteAxe);
 };
 
 #endif
