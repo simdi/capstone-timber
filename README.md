@@ -1,7 +1,6 @@
 # Timber game written with c++ and SFML(Simple Fast Media Library).
 This is a timber game. The code for this repo was inspired by a game instructor [John Horton].
 
----
 
 ## Prerequisites
 * cmake >= 3.X
@@ -25,7 +24,6 @@ This is a timber game. The code for this repo was inspired by a game instructor 
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
----
 
 ## SFML Installation
 
@@ -51,7 +49,6 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 3. Compile: `cmake .. && make`
 4. Run it: `./capstone-timber`.
 
----
 
 ## Folder structure
 

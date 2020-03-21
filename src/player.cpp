@@ -7,7 +7,7 @@ Player::Player(sf::Vector2f cords, std::string texturePath) {
 }
 
 void Player::Move(float index, float dtSeconds) {
-  std::cout << index << dtSeconds << std::endl;
+  // std::cout << index << dtSeconds << std::endl;
   // if(!m_isActive) {
   //   // How far is the Player
   //   srand((int)time(0) * (index + 1) * 10);

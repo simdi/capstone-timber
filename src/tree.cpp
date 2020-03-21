@@ -7,5 +7,5 @@ Tree::Tree(sf::Vector2f cords, std::string texturePath) {
 }
 
 void Tree::Move(float index, float dtSeconds) {
-  std::cout << index << dtSeconds << std::endl;
+  // std::cout << index << dtSeconds << std::endl;
 }

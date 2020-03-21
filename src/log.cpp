@@ -7,7 +7,6 @@ Log::Log(sf::Vector2f cords, std::string texturePath) {
 }
 
 void Log::Move(float index, float dtSeconds) {
-  std::cout << index << dtSeconds << std::endl;
   if (IsActive()) {
     m_sprite->setPosition(m_sprite->getPosition().x + (SpeedX() * dtSeconds), m_sprite->getPosition().y + (SpeedY() * dtSeconds));
 
