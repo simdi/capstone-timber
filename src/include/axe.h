@@ -1,6 +1,7 @@
 #ifndef AXE_H
 #define AXE_H
 
+#include <iostream>
 #include "entity.h"
 
 class Axe : public Entity {

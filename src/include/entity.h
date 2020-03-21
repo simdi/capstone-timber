@@ -1,6 +1,13 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <memory>
+// #include <SFML/Audio.hpp>
+// #include <SFML/Graphics.hpp>
+// #include <SFML/Network.hpp>
+// #include <SFML/System.hpp>
+// #include <SFML/Window.hpp>
+
 class Entity {
 protected:
   std::shared_ptr<sf::Sprite> m_sprite = std::make_shared<sf::Sprite>();

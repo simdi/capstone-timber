@@ -2,16 +2,16 @@
 #define GAME_H
 
 #include <iostream>
+#include <sstream>
 
-#include "./include/controller.h"
-#include "./include/cloud.h"
-#include "./include/tree.h"
-#include "./include/bee.h"
-#include "./include/player.h"
-#include "./include/rip.h"
-#include "./include/axe.h"
-#include "./include/log.h"
-#include "./include/branches.h"
+#include "./cloud.h"
+#include "./tree.h"
+#include "./bee.h"
+#include "./player.h"
+#include "./rip.h"
+#include "./axe.h"
+#include "./log.h"
+#include "./branches.h"
 
 class Game {
 private:

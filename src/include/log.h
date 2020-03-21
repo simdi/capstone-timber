@@ -1,6 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
+#include <iostream>
 #include "entity.h"
 
 class Log : public Entity {
