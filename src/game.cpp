@@ -1,13 +1,13 @@
 #include "./include/game.h"
 
 Game::Game(float x, float y) : m_screenX(x), m_screenY(y),
-  m_player({580.0f, 720.0f}, "graphics/player.png"),
-  m_rip({600.0f, 860.0f}, "graphics/rip.png"),
-  m_axe({700.0f, 830.0f}, "graphics/axe.png"),
-  m_log({810.0f, 720.0f}, "graphics/log.png") {
+  m_player({580.0f, 720.0f}, "../graphics/player.png"),
+  m_rip({600.0f, 860.0f}, "../graphics/rip.png"),
+  m_axe({700.0f, 830.0f}, "../graphics/axe.png"),
+  m_log({810.0f, 720.0f}, "../graphics/log.png") {
   std::cout << "Game initialised" << std::endl;
   std::cout << "Screen X: " << m_screenX << " Screen Y: " << m_screenY << std::endl;
-  m_textureBackground->loadFromFile("graphics/background.png");
+  m_textureBackground->loadFromFile("../graphics/background.png");
   m_spriteBackground->setTexture(*m_textureBackground);
   m_spriteBackground->setPosition(0, 0);
 
@@ -17,7 +17,7 @@ Game::Game(float x, float y) : m_screenX(x), m_screenY(y),
   m_timeBar.setPosition((m_screenX/2) - TIMEBAR_START_WIDTH/2, 980);
 
   // Choose a font
-  m_font.loadFromFile("fonts/KOMIKAP_.ttf");
+  m_font.loadFromFile("../fonts/KOMIKAP_.ttf");
   // Set font to the message
   m_messageText.setFont(m_font);
   m_scoreText.setFont(m_font);
@@ -34,9 +34,9 @@ Game::Game(float x, float y) : m_screenX(x), m_screenY(y),
   m_scoreText.setPosition(20, 20);
 
   // Sounds
-  m_ootBuffer.loadFromFile("sound/out_of_time.wav");
-  m_deathBuffer.loadFromFile("sound/death.wav");
-  m_chopBuffer.loadFromFile("sound/chop.wav");
+  m_ootBuffer.loadFromFile("../sound/out_of_time.wav");
+  m_deathBuffer.loadFromFile("../sound/death.wav");
+  m_chopBuffer.loadFromFile("../sound/chop.wav");
   m_outOfTime.setBuffer(m_ootBuffer);
   m_death.setBuffer(m_deathBuffer);
   m_chop.setBuffer(m_chopBuffer);
@@ -46,19 +46,19 @@ void Game::init() {
   // Init clouds
   for(std::size_t i = 0; i < NO_OF_CLOUDS; i++) {
     // Create cloud with default x and y coordinates.
-    Cloud cloud({0.0f, static_cast<float>((i)*250)}, "graphics/cloud.png");
+    Cloud cloud({0.0f, static_cast<float>((i)*250)}, "../graphics/cloud.png");
     m_clouds.emplace_back(std::move(cloud));
   }
   // Init trees
   for(std::size_t i = 0; i < NO_OF_TREES; i++) {
     // Create tree with default x and y coordinates.
-    Tree tree({static_cast<float>((i)*810), 0.0f}, "graphics/tree.png");
+    Tree tree({static_cast<float>((i)*810), 0.0f}, "../graphics/tree.png");
     m_trees.emplace_back(std::move(tree));
   }
 
   // Set the texture for each branch sprite
   for(std::size_t i = 0; i < NO_OF_BRANCHES; i++) {
-    Branches branch({-2000.0f, -2000.0f}, "graphics/branch.png");
+    Branches branch({-2000.0f, -2000.0f}, "../graphics/branch.png");
     m_branches.emplace_back(std::move(branch));
   }
 
@@ -67,7 +67,7 @@ void Game::init() {
     // Create cloud with default x and y coordinates.
     float x = 0.0f;
     float y = static_cast<float>((i)*150);
-    Bee bee({x, y}, "graphics/bee.png");
+    Bee bee({x, y}, "../graphics/bee.png");
     m_bees.emplace_back(std::move(bee));
   }
 }

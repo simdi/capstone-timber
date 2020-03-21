@@ -1,6 +1,7 @@
 #ifndef RIP_H
 #define RIP_H
 
+#include <iostream>
 #include "entity.h"
 
 class Rip : public Entity {
