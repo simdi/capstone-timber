@@ -44,6 +44,13 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 2. Run **sudo apt install libsfml-dev**. The SFML version you got will vary depending on the distro. 2.5.1 is included in [Ubuntu 19.04 Disco Dingo](http://cdimage.ubuntu.com/daily-live/current/HEADER.html) for example.
 
 
+## Basic Build Instructions
+
+1. Clone this repo.
+2. Make a build directory in the top level directory: `mkdir build && cd build`
+3. Compile: `cmake .. && make`
+4. Run it: `./capstone-timber`.
+
 ---
 
 ## Folder structure
@@ -52,17 +59,45 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 + cmake/
   + Modules/
     + FindSFML.cmake
-+ nlohmann_json/
-    + json.hpp
-  + XInput/
-    + XInput.h
-    + XInput.lib
++ fonts/
+  + KOMIKAP_ttf
++ graphics/
+  + axe.png
+  + background-1280-720.png
+  + background.png
+  + bee.png
+  + branch.png
+  + cloud.png
+  + log.png
+  + player.png
+  + rip.png
+  + tree.png
+  + tree2.png
++ sound/
+  + chop.wav
+  + death.wav
+  + out_of_time.wav
++ src/
+  + include/
+    + axe.h
+    + bee.h
+    + branches.h
+    + cloud.h
+    + entity.h
+    + game.h
+    + main.h
+    + player.h
+    + rip.h
+    + tree.h
+  + axe.cpp
+  + bee.cpp
+  + branches.cpp
+  + cloud.cpp
+  + game.cpp
+  + main.cpp
+  + player.cpp
+  + rip.cpp
+  + tree.cpp
+
 ```
-
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory in the top level directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./capstone-timber`.
 
