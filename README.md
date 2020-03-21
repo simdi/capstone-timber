@@ -46,6 +46,19 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 
 ---
 
+## Folder structure
+
+```
++ cmake/
+  + Modules/
+    + FindSFML.cmake
++ nlohmann_json/
+    + json.hpp
+  + XInput/
+    + XInput.h
+    + XInput.lib
+```
+
 ## Basic Build Instructions
 
 1. Clone this repo.
