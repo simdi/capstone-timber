@@ -6,6 +6,4 @@ Tree::Tree(sf::Vector2f cords, std::string texturePath) {
   m_sprite->setPosition(cords.x, cords.y);
 }
 
-void Tree::Move(float index, float dtSeconds) {
-  // std::cout << index << dtSeconds << std::endl;
-}
+void Tree::Move(float index, float dtSeconds) {}

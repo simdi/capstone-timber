@@ -70,14 +70,14 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 
 ```
 
-| Criteria                                                                             | File      | Lines         |
-| -------------------------------------------------------------------------------------|:---------:|:-------------:|
-| The project demonstrates an understanding of C++ functions and control structures.   | game.cpp  |  110,121,139  |
-| Classes use appropriate access specifiers for class members.                         | *.h       |               |
-| Class constructors utilize member initialization lists.                              | game.cpp  | 3 - 43        |
-| Derived class functions override virtual base class functions.                       | log.cpp   | 10 - 18       |
-| The project uses move semantics to move data, instead of copying it, where possible. | game.cpp  | 50,56,62,71   |
-| The project uses smart pointers instead of raw pointers.                             | entity.h  | 10,11         |
+| Criteria                                                                            | File     | Lines      |
+| ------------------------------------------------------------------------------------|:--------:|:----------:|
+| The project demonstrates an understanding of C++ functions and control structures.  | game.cpp | 110,121,139|
+| Classes use appropriate access specifiers for class members.                        | *.h      |            |
+| Class constructors utilize member initialization lists.                             | game.cpp | 3 - 43     |
+| Derived class functions override virtual base class functions.                      | log.cpp  | 10 - 18    |
+| The project uses move semantics to move data, instead of copying it, where possible.| game.cpp | 50,56,62,71|
+| The project uses smart pointers instead of raw pointers.                            | entity.h | 10,11      |
 
 
 ```

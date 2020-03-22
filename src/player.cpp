@@ -6,6 +6,4 @@ Player::Player(sf::Vector2f cords, std::string texturePath) {
   m_sprite->setPosition(cords.x, cords.y);
 }
 
-void Player::Move(float index, float dtSeconds) {
-  // std::cout << index << dtSeconds << std::endl;
-}
+void Player::Move(float index, float dtSeconds) {}

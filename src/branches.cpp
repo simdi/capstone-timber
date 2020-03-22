@@ -9,6 +9,4 @@ Branches::Branches(sf::Vector2f cords, std::string texturePath) {
   m_sprite->setOrigin(220, 20);
 }
 
-void Branches::Move(float index, float dtSeconds) {
-  // std::cout << index << dtSeconds << std::endl;
-}
+void Branches::Move(float index, float dtSeconds) {}
