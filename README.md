@@ -1,5 +1,5 @@
-# Timber game written with c++ and SFML(Simple Fast Media Library).
-This is a timber game. The code for this repo was inspired by a game instructor [John Horton].
+# Timberman game written with c++ and SFML(Simple Fast Media Library).
+The Timberman game clone, which is based on ideas and concepts from a "Beginning C++ Game Programming" book by John Horton.
 
 <img src="graphics/Timber.gif"/>
 
