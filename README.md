@@ -51,51 +51,34 @@ This is a timber game. The code for this repo was inspired by a game instructor 
 4. Run it: `./capstone-timber`.
 
 
-## Folder structure
+## Class file description
 
 ```
-+ cmake/
-  + Modules/
-    + FindSFML.cmake
-+ fonts/
-  + KOMIKAP_ttf
-+ graphics/
-  + axe.png
-  + background-1280-720.png
-  + background.png
-  + bee.png
-  + branch.png
-  + cloud.png
-  + log.png
-  + player.png
-  + rip.png
-  + tree.png
-  + tree2.png
-+ sound/
-  + chop.wav
-  + death.wav
-  + out_of_time.wav
-+ src/
-  + include/
-    + axe.h
-    + bee.h
-    + branches.h
-    + cloud.h
-    + entity.h
-    + game.h
-    + main.h
-    + player.h
-    + rip.h
-    + tree.h
-  + axe.cpp
-  + bee.cpp
-  + branches.cpp
-  + cloud.cpp
-  + game.cpp
-  + main.cpp
-  + player.cpp
-  + rip.cpp
-  + tree.cpp
++ Entity is an abstract class that all other derived class inherits from.
++ Axe class is responsible for the tree axe.
++ Bee class is responsible for creating all the bees.
++ Branch class is responsible for creating all the branches of a tree.
++ Cloud class is responsible for creating all the clouds that hover on the.
++ Game class is composed of all the objects that is required for the game to function.
++ Player class is a blueprint of the player object.
++ Rip class is a blueprint of the RIP stone.
++ Tree class is the trees blueprint.
+
+```
+
+## Rubric specification
+
+```
+
+| Criteria                                                                                                    | File          | Lines         |
+| ----------------------------------------------------------------------------------------------------------- |:-------------:|:-------------:|
+| The project demonstrates an understanding of C++ functions and control structures.                          | game.cpp      |  110,121,139  |
+| Classes use appropriate access specifiers for class members.                                                | *.h           |               |
+| Class constructors utilize member initialization lists.                                                     | game.cpp      | 3 - 43        |
+| Derived class functions override virtual base class functions.                                              | log.cpp       | 10 - 18       |
+| The project uses move semantics to move data, instead of copying it, where possible.                        | game.cpp      | 50,56,62,71   |
+| The project uses smart pointers instead of raw pointers.                                                    | entity.h      | 10,11         |
+
 
 ```
 
