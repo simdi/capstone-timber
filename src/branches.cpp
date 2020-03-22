@@ -1,8 +1,6 @@
 #include "./include/branches.h"
-#include <iostream>
 
 Branches::Branches(sf::Vector2f cords, std::string texturePath) {
-  std::cout << "Branches Initilized" << std::endl;
   m_texture->loadFromFile(texturePath);
   m_sprite->setTexture(*m_texture);
   m_sprite->setPosition(cords.x, cords.y);

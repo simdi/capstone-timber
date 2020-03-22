@@ -1,4 +1,5 @@
 #include <sstream>
+#include <memory>
 
 #include "./include/game.h"
 
@@ -9,8 +10,8 @@ int main() {
   sf::RenderWindow window(vm, "Timber!!!");
 
   // Initialise game.
-  Game game(screenX, screenY);
-  game.Run(window);
+  std::unique_ptr<Game> game = std::make_unique<Game>(screenX, screenY);
+  game->Run(window);
 
 	return 0;
 }
