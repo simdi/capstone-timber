@@ -1,6 +1,7 @@
 # Timber game written with c++ and SFML(Simple Fast Media Library).
 This is a timber game. The code for this repo was inspired by a game instructor [John Horton].
 
+<img src="graphics/Timber.gif"/>
 
 ## Prerequisites
 * cmake >= 3.X

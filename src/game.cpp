@@ -226,6 +226,25 @@ void Game::move() {
     ss << "Score = " << m_score;
     m_scoreText.setString(ss.str());
 
+    // Update the branch sprites
+    for(int i = 0; i < NO_OF_BRANCHES; i++) {
+      float height = i * 250;
+      if (m_branchPositions[i] == side::LEFT) {
+        // Move the sprite to the left side
+        (m_branches[i].getSprite())->setPosition(610, height);
+        // Flip the sprite round the other way
+        (m_branches[i].getSprite())->setRotation(180);
+      } else if (m_branchPositions[i] == side::RIGHT) {
+        // Move the sprite to the left side
+        (m_branches[i].getSprite())->setPosition(1330, height);
+        // Flip the sprite round the other way
+        (m_branches[i].getSprite())->setRotation(0);
+      } else {
+        // Hide the branch
+        (m_branches[i].getSprite())->setPosition(3000, height);
+      }
+    }
+
     // Handle a flying log
     m_log.Move(0.0f, dt.asSeconds());
 
@@ -255,13 +274,13 @@ void Game::draw(sf::RenderWindow &window) {
   for(const Cloud &cloud : m_clouds) {
     window.draw(*cloud.getSprite());
   }
-  // Draw all tree sprites
-  for(const Tree &tree : m_trees) {
-    window.draw(*tree.getSprite());
-  }
   // Draw all branches sprites
   for(const Branches &branches : m_branches) {
     window.draw(*branches.getSprite());
+  }
+  // Draw all tree sprites
+  for(const Tree &tree : m_trees) {
+    window.draw(*tree.getSprite());
   }
 
   // Draw player sprite
